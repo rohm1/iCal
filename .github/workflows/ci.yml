@@ -17,6 +17,7 @@ jobs:
           - "8.1"
           - "8.2"
           - "8.3"
+          - "8.4"
     steps:
       - name: "Checkout"
         uses: "actions/checkout@v4"
@@ -36,9 +37,13 @@ jobs:
           path: "${{ steps.determine-composer-cache-directory.outputs.directory }}"
           key: "php-${{ matrix.php-version }}-composer-cache"
 
-      - name: "Install lowest available packages for PHP 7.4 and 8.0"
+      - name: "Install lowest available packages for PHP 7.4, 8.0 and 8.1"
         if: ${{ matrix.php-version == '7.4' || matrix.php-version == '8.0' || matrix.php-version == '8.1' }}
         run: "composer up --prefer-lowest"
+
+      - name: "Install packages for PHP 8.4"
+        if: ${{ matrix.php-version == '8.4' }}
+        run: "composer install --ignore-platform-reqs"
 
       - name: "Run tests (old PHP versions)"
         if: ${{ matrix.php-version == '7.4' || matrix.php-version == '8.0' || matrix.php-version == '8.1' }}
@@ -47,6 +52,10 @@ jobs:
       - name: "Run tests"
         if: ${{ matrix.php-version == '8.2' || matrix.php-version == '8.3' }}
         run: "make -j -O test"
+
+      - name: "Run tests (PHP 8.4)"
+        if: ${{ matrix.php-version == '8.4' }}
+        run: "make -j -O test-phpunit test-examples"
 
       - name: "Send code coverage"
         if: ${{ matrix.php-version == '8.3' }}
