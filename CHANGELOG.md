@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+-   Re-Add property `X-MICROSOFT-CDO-BUSYSTATUS` that was added in 0.16.0 and then lost
+
 ## [2.14.0] - 2024-07-11
 
 ### Fixed
