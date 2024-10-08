@@ -1,3 +1,6 @@
+> [!NOTE]  
+> This is a fork of https://github.com/markuspoerschke/iCal/ with support for `ms busy status` (https://github.com/markuspoerschke/iCal/pull/637)
+
 # 📅 eluceo — iCal 2
 
 [![Continuous Integration](https://github.com/markuspoerschke/iCal/actions/workflows/ci.yml/badge.svg)](https://github.com/markuspoerschke/iCal/actions/workflows/ci.yml)
